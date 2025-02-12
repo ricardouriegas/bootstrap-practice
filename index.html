@@ -1,0 +1,107 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SocialConnect | Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --hover-color: #1d4ed8;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .card-post {
+            transition: transform 0.2s;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--hover-color);
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <!-- Página de Inicio: Descripción y galería de publicaciones -->
+    <div class="container py-5">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-4 fw-bold mb-4">Comparte tus imágenes y videos</h1>
+                <p class="lead mb-4">Únete a SocialConnect para compartir tus momentos visuales y descubre contenido único de nuestra comunidad.</p>
+                <a href="login.html" class="btn btn-primary btn-lg">Iniciar Sesión</a>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <!-- Galería de publicaciones de usuarios públicos -->
+                <div class="row g-3">
+                    <!-- Publicación 1 -->
+                    <div class="col-6">
+                        <div class="card card-post">
+                            <img src="https://picsum.photos/400/300?random=1" class="card-img-top" alt="Publicación">
+                            <div class="card-body">
+                                <h5 class="card-title">@usuario1</h5>
+                                <p class="card-text">Disfrutando del día</p>
+                                <small class="text-muted">❤️ 241 likes</small>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Publicación 2 -->
+                    <div class="col-6">
+                        <div class="card card-post">
+                            <img src="https://picsum.photos/400/300?random=2" class="card-img-top" alt="Publicación">
+                            <div class="card-body">
+                                <h5 class="card-title">@usuario2</h5>
+                                <p class="card-text">Atardecer increíble</p>
+                                <small class="text-muted">❤️ 188 likes</small>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Publicación 3 -->
+                    <div class="col-6">
+                        <div class="card card-post">
+                            <img src="https://picsum.photos/400/300?random=3" class="card-img-top" alt="Publicación">
+                            <div class="card-body">
+                                <h5 class="card-title">@usuario3</h5>
+                                <p class="card-text">Momento especial</p>
+                                <small class="text-muted">❤️ 312 likes</small>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Publicación 4 -->
+                    <div class="col-6">
+                        <div class="card card-post">
+                            <img src="https://picsum.photos/400/300?random=4" class="card-img-top" alt="Publicación">
+                            <div class="card-body">
+                                <h5 class="card-title">@usuario4</h5>
+                                <p class="card-text">¡Viviendo momentos únicos!</p>
+                                <small class="text-muted">❤️ 97 likes</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ...posible contenido adicional... -->
+    </div>
+
+    <!-- Resto de páginas en archivos separados -->
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
