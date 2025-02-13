@@ -24,11 +24,50 @@
         .btn-like.liked {
             background-color: var(--hover-color);
         }
-    </style>
+        /* Agregar efecto de hover a las tarjetas */
+        .card:hover {
+            transition: transform 0.2s;
+            transform: translateY(-5px);
+        }
+        .container.py-5 {
+            max-width: 1200px;
+        }
+        
+        .card img.img-fluid.rounded-circle {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .card-img-top {
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .card {
+            height: 100%;
+        }
+        
+        .row-cols-md-2 .card,
+        .row-cols-md-3 .card {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        </style>
 </head>
 <body>
-    <div class="container py-5">
+    <!-- Navigation buttons -->
+    <div class="container text-center my-3">
+        <div class="btn-group" role="group">
+            <a href="index.html" class="btn btn-primary mx-1">Inicio</a>
+            <a href="login.html" class="btn btn-primary mx-1">Iniciar Sesión</a>
+            <a href="register.html" class="btn btn-primary mx-1">Registro</a>
+            <a href="perfil.html" class="btn btn-primary mx-1">Perfil</a>
+            <a href="timeline.html" class="btn btn-primary mx-1">Timeline</a>
+        </div>
+    </div>
 
+    <div class="container py-5">
         <!-- Sección de datos del usuario -->
         <div class="card mb-4 shadow">
             <div class="card-body">
@@ -131,7 +170,9 @@
             </div>
         </div>
 
-    </div>
+    </div> <!-- Cierre del contenedor principal -->
+    <!-- Eliminar bloque de navbar -->
+    <!-- Navbar eliminado -->
 
     <!-- Scripts: jQuery y Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

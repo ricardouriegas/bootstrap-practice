@@ -16,62 +16,76 @@
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
 
-        .card-post {
-            transition: transform 0.2s;
-            border: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .card-post:hover {
-            transform: translateY(-5px);
-        }
-
         .btn-primary {
             background-color: var(--primary-color);
             border: none;
-            padding: 0.75rem 1.5rem;
         }
 
         .btn-primary:hover {
             background-color: var(--hover-color);
         }
+
+        .container.vh-100 {
+            max-width: 1200px;
+        }
+        
+        .card {
+            max-width: 450px;
+            margin: 0 auto;
+        }
+        
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body class="gradient-bg">
-    <!-- Página de Inicio -->
+    <!-- Navigation buttons -->
+    <div class="container text-center my-3">
+        <div class="btn-group" role="group">
+            <a href="index.html" class="btn btn-primary mx-1">Inicio</a>
+            <a href="login.html" class="btn btn-primary mx-1">Iniciar Sesión</a>
+            <a href="register.html" class="btn btn-primary mx-1">Registro</a>
+            <a href="perfil.html" class="btn btn-primary mx-1">Perfil</a>
+            <a href="timeline.html" class="btn btn-primary mx-1">Timeline</a>
+        </div>
+    </div>
     <!-- login.html -->
-<div class="container vh-100">
-    <div class="row justify-content-center align-items-center h-100">
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow">
-                <!-- Agregado: imagen de ejemplo con Picsum -->
-                <img src="https://picsum.photos/400/150" class="card-img-top" alt="Imagen de ejemplo">
-                <div class="card-body p-4">
-                    <h2 class="text-center mb-2">Inicia sesión en SocialConnect</h2>
-                    <p class="text-center mb-4">Comparte y descubre imágenes y videos increíbles.</p>
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Usuario" id="username" required>
+    <div class="container vh-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow">
+                    <!-- Agregado: imagen de ejemplo con Picsum -->
+                    <img src="https://picsum.photos/400/150" class="card-img-top" alt="Imagen de ejemplo">
+                    <div class="card-body p-4">
+                        <h2 class="text-center mb-2">Inicia sesión en SocialConnect</h2>
+                        <p class="text-center mb-4">Comparte y descubre imágenes y videos increíbles.</p>
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Usuario" id="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Contraseña" id="password" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember">
+                                <label class="form-check-label" for="remember">Recordar usuario</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                        </form>
+                        <div class="mt-3 text-center">
+                            <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                            <br>
+                            <a href="register.html" class="text-decoration-none">Crear cuenta nueva</a>
                         </div>
-                        <div class="mb-3">
-                            <input type="password" class="form-control" placeholder="Contraseña" id="password" required>
-                        </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="remember">
-                            <label class="form-check-label" for="remember">Recordar usuario</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                    </form>
-                    <div class="mt-3 text-center">
-                        <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
-                        <br>
-                        <a href="register.html" class="text-decoration-none">Crear cuenta nueva</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Eliminar bloque de navbar -->
+    <!-- Navbar eliminado -->
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -93,15 +107,14 @@
             }
 
             if(username === 'demo' && password === 'demo') {
-                window.location.href = 'timeline.html';
+                window.location.href = 'perfil.html';
             } else {
-                alert("Usuario o contraseña incorrectos");
+                window.location.href = 'perfil.html';
+                // alert("Usuario o contraseña incorrectos");
             }
         });
     });
 </script>
-
-    <!-- Resto de páginas en archivos separados -->
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
