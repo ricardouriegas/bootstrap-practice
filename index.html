@@ -10,41 +10,84 @@
         :root {
             --primary-color: #2563eb;
             --hover-color: #1d4ed8;
+            --transition-speed: 0.3s;
         }
 
         .gradient-bg {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
         }
 
         .card-post {
-            transition: transform 0.2s;
+            transition: all var(--transition-speed) ease;
             border: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             height: 100%;
             max-width: 500px;
             margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .card-post:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         }
 
         .card-post img {
-            height: 250px;
+            height: 300px;
             object-fit: cover;
+            transition: transform var(--transition-speed);
+        }
+
+        .card-post:hover img {
+            transform: scale(1.05);
         }
 
         .btn-primary {
             background-color: var(--primary-color);
             border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            transition: all var(--transition-speed);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
         .btn-primary:hover {
             background-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
         }
 
-        .container.py-5 {
-            max-width: 1200px;
+        .hero-section {
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .display-4 {
+            color: var(--primary-color);
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        .lead {
+            font-size: 1.25rem;
+            color: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            .card-post img {
+                height: 250px;
+            }
+            
+            .display-4 {
+                font-size: 2.5rem;
+            }
+            
+            .lead {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -60,64 +103,112 @@
         </div>
     </div>
     <div class="container py-5">
-        <!-- Página de Inicio: Descripción y galería de publicaciones -->
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-4 fw-bold mb-4">Comparte tus imágenes y videos</h1>
-                <p class="lead mb-4">Únete a SocialConnect para compartir tus momentos visuales y descubre contenido único de nuestra comunidad.</p>
-                <a href="login.html" class="btn btn-primary btn-lg">Iniciar Sesión</a>
-            </div>
-            <div class="col-lg-6 mt-4 mt-lg-0">
-                <!-- Galería de publicaciones de usuarios públicos -->
-                <div class="row g-3">
-                    <!-- Publicación 1 -->
-                    <div class="col-6">
-                        <div class="card card-post">
-                            <img src="https://picsum.photos/400/300?random=1" class="card-img-top" alt="Publicación">
-                            <div class="card-body">
-                                <h5 class="card-title">@usuario1</h5>
-                                <p class="card-text">Disfrutando del día</p>
-                                <small class="text-muted">❤️ 241 likes</small>
+        <div class="hero-section">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start mb-5 mb-lg-0">
+                    <h1 class="display-4 fw-bold mb-4">Comparte tus momentos más especiales</h1>
+                    <p class="lead mb-5">Únete a SocialConnect y forma parte de una comunidad vibrante. Comparte tus historias, descubre contenido inspirador y conecta con personas de todo el mundo.</p>
+                    <a href="login.html" class="btn btn-primary btn-lg">Comenzar ahora →</a>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <!-- Galería de publicaciones de usuarios públicos -->
+                    <div class="row g-3">
+                        <!-- Publicación 1 -->
+                        <div class="col-6">
+                            <div class="card card-post">
+                                <img src="https://picsum.photos/400/300?random=1" class="card-img-top" alt="Publicación">
+                                <div class="card-body">
+                                    <h5 class="card-title">@usuario1</h5>
+                                    <p class="card-text">Disfrutando del día</p>
+                                    <small class="text-muted">❤️ 241 likes</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Publicación 2 -->
-                    <div class="col-6">
-                        <div class="card card-post">
-                            <img src="https://picsum.photos/400/300?random=2" class="card-img-top" alt="Publicación">
-                            <div class="card-body">
-                                <h5 class="card-title">@usuario2</h5>
-                                <p class="card-text">Atardecer increíble</p>
-                                <small class="text-muted">❤️ 188 likes</small>
+                        <!-- Publicación 2 -->
+                        <div class="col-6">
+                            <div class="card card-post">
+                                <img src="https://picsum.photos/400/300?random=2" class="card-img-top" alt="Publicación">
+                                <div class="card-body">
+                                    <h5 class="card-title">@usuario2</h5>
+                                    <p class="card-text">Atardecer increíble</p>
+                                    <small class="text-muted">❤️ 188 likes</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Publicación 3 -->
-                    <div class="col-6">
-                        <div class="card card-post">
-                            <img src="https://picsum.photos/400/300?random=3" class="card-img-top" alt="Publicación">
-                            <div class="card-body">
-                                <h5 class="card-title">@usuario3</h5>
-                                <p class="card-text">Momento especial</p>
-                                <small class="text-muted">❤️ 312 likes</small>
+                        <!-- Publicación 3 -->
+                        <div class="col-6">
+                            <div class="card card-post">
+                                <img src="https://picsum.photos/400/300?random=3" class="card-img-top" alt="Publicación">
+                                <div class="card-body">
+                                    <h5 class="card-title">@usuario3</h5>
+                                    <p class="card-text">Momento especial</p>
+                                    <small class="text-muted">❤️ 312 likes</small>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Publicación 4 -->
-                    <div class="col-6">
-                        <div class="card card-post">
-                            <img src="https://picsum.photos/400/300?random=4" class="card-img-top" alt="Publicación">
-                            <div class="card-body">
-                                <h5 class="card-title">@usuario4</h5>
-                                <p class="card-text">¡Viviendo momentos únicos!</p>
-                                <small class="text-muted">❤️ 97 likes</small>
+                        <!-- Publicación 4 -->
+                        <div class="col-6">
+                            <div class="card card-post">
+                                <img src="https://picsum.photos/400/300?random=4" class="card-img-top" alt="Publicación">
+                                <div class="card-body">
+                                    <h5 class="card-title">@usuario4</h5>
+                                    <p class="card-text">¡Viviendo momentos únicos!</p>
+                                    <small class="text-muted">❤️ 97 likes</small>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- ...posible contenido adicional... -->
+        
+        <div class="row g-4 mt-4">
+            <!-- Agregar 2 filas más de publicaciones siguiendo el mismo patrón existente -->
+            <!-- Publicación 5 -->
+            <div class="col-6">
+                <div class="card card-post">
+                    <img src="https://picsum.photos/400/300?random=5" class="card-img-top" alt="Publicación">
+                    <div class="card-body">
+                        <h5 class="card-title">@usuario5</h5>
+                        <p class="card-text">Explorando la naturaleza</p>
+                        <small class="text-muted">❤️ 150 likes</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Publicación 6 -->
+            <div class="col-6">
+                <div class="card card-post">
+                    <img src="https://picsum.photos/400/300?random=6" class="card-img-top" alt="Publicación">
+                    <div class="card-body">
+                        <h5 class="card-title">@usuario6</h5>
+                        <p class="card-text">Día de playa</p>
+                        <small class="text-muted">❤️ 200 likes</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Publicación 7 -->
+            <div class="col-6">
+                <div class="card card-post">
+                    <img src="https://picsum.photos/400/300?random=7" class="card-img-top" alt="Publicación">
+                    <div class="card-body">
+                        <h5 class="card-title">@usuario7</h5>
+                        <p class="card-text">Cena con amigos</p>
+                        <small class="text-muted">❤️ 175 likes</small>
+                    </div>
+                </div>
+            </div>
+            <!-- Publicación 8 -->
+            <div class="col-6">
+                <div class="card card-post">
+                    <img src="https://picsum.photos/400/300?random=8" class="card-img-top" alt="Publicación">
+                    <div class="card-body">
+                        <h5 class="card-title">@usuario8</h5>
+                        <p class="card-text">Aventura en la montaña</p>
+                        <small class="text-muted">❤️ 220 likes</small>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div> <!-- Cierre del contenedor principal -->
     <!-- Eliminar bloque de navbar -->
     <!-- Navbar eliminado -->

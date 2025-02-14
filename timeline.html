@@ -49,16 +49,26 @@
             color: #fff;
             padding: 0.375rem 0.75rem;
             cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
         }
 
         .btn-like.liked {
             background-color: var(--hover-color);
+            background-color: #dc3545;
+            transform: scale(1.05);
+        }
+
+        .btn-like:hover {
+            transform: translateY(-2px);
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            padding: 1rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         .user-avatar {
@@ -67,9 +77,68 @@
             border-radius: 50%;
             margin-right: 1rem;
         }
+
+        .user-info h6 {
+            margin-bottom: 0.2rem;
+        }
+
+        .timestamp {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .post-actions {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .post-caption {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .timeline-posts .card {
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* Add these new styles for navigation consistency */
+        .btn-group .btn-primary {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-group .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+        }
+
+        .container.text-center.my-3 {
+            margin-top: 1.5rem !important;
+            margin-bottom: 2rem !important;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-spinner.active {
+            display: block;
+        }
+
+        .spinner-border {
+            color: var(--primary-color);
+            width: 3rem;
+            height: 3rem;
+        }
     </style>
 </head>
-<body>
+<body class="gradient-bg">
     <!-- Navigation buttons -->
     <div class="container text-center my-3">
         <div class="btn-group" role="group">
@@ -82,64 +151,37 @@
     </div>
 
     <div class="container py-5">
-        <!-- Timeline de publicaciones -->
         <div class="timeline-posts">
-            <!-- Post 1 -->
-            <div class="card">
-                <div class="user-info">
-                    <img src="https://picsum.photos/40?random=1" class="user-avatar" alt="Avatar">
-                    <div>
-                        <h6 class="mb-0">@usuario_cool</h6>
-                        <small class="text-muted">Juan Pérez</small>
+            <!-- Template for dynamic post generation -->
+            <template id="post-template">
+                <div class="card shadow-sm">
+                    <div class="user-info d-flex align-items-center">
+                        <img src="" class="user-avatar" alt="Avatar">
+                        <div class="ms-3">
+                            <h6 class="username mb-0"></h6>
+                            <small class="text-muted fullname"></small>
+                        </div>
+                        <small class="timestamp ms-auto"></small>
+                    </div>
+                    <img src="" class="card-img-top" alt="Post">
+                    <div class="post-caption">
+                        <p class="card-text mb-0"></p>
+                    </div>
+                    <div class="post-actions d-flex justify-content-between align-items-center">
+                        <span class="like-count"></span>
+                        <button class="btn-like">
+                            <span class="like-icon">❤️</span> Like
+                        </button>
                     </div>
                 </div>
-                <img src="https://picsum.photos/800/600?random=1" class="card-img-top" alt="Post">
-                <div class="card-body">
-                    <p class="card-text">Disfrutando de un hermoso día en la playa. 🌊☀️</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="like-count" data-count="156">156 Likes</span>
-                        <button class="btn-like" data-liked="false">Like</button>
-                    </div>
-                </div>
+            </template>
+        </div>
+        <!-- Add loading spinner -->
+        <div class="loading-spinner">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Cargando...</span>
             </div>
-
-            <!-- Post 2 -->
-            <div class="card">
-                <div class="user-info">
-                    <img src="https://picsum.photos/40?random=2" class="user-avatar" alt="Avatar">
-                    <div>
-                        <h6 class="mb-0">@viajera_123</h6>
-                        <small class="text-muted">María González</small>
-                    </div>
-                </div>
-                <img src="https://picsum.photos/800/600?random=2" class="card-img-top" alt="Post">
-                <div class="card-body">
-                    <p class="card-text">Explorando nuevos lugares. ¡La aventura nunca termina! 🌎✈️</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="like-count" data-count="234">234 Likes</span>
-                        <button class="btn-like" data-liked="false">Like</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Post 3 -->
-            <div class="card">
-                <div class="user-info">
-                    <img src="https://picsum.photos/40?random=3" class="user-avatar" alt="Avatar">
-                    <div>
-                        <h6 class="mb-0">@foodlover</h6>
-                        <small class="text-muted">Carlos Rodríguez</small>
-                    </div>
-                </div>
-                <img src="https://picsum.photos/800/600?random=3" class="card-img-top" alt="Post">
-                <div class="card-body">
-                    <p class="card-text">Cocinando nuevas recetas. ¡La comida es amor! 🍳❤️</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="like-count" data-count="198">198 Likes</span>
-                        <button class="btn-like" data-liked="false">Like</button>
-                    </div>
-                </div>
-            </div>
+            <p class="mt-2 text-muted">Cargando más publicaciones...</p>
         </div>
     </div>
 
@@ -147,20 +189,94 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('.btn-like').click(function(){
-                let $btn = $(this);
-                let $likeCount = $btn.closest('.card-body').find('.like-count');
-                let count = parseInt($likeCount.attr('data-count'));
-                let liked = $btn.attr('data-liked') === 'true';
+            let page = 1;
+            let loading = false;
+            const postsPerPage = 3;
 
-                if(liked) {
-                    count--;
-                    $btn.attr('data-liked', 'false').removeClass('liked').text('Like');
-                } else {
-                    count++;
-                    $btn.attr('data-liked', 'true').addClass('liked').text('Liked');
+            // Función para generar datos de post aleatorios
+            function generateRandomPost(index) {
+                const usernames = ['@viajero_feliz', '@foodie_pro', '@aventurero', '@fotografo', '@artista'];
+                const fullnames = ['Pedro Sánchez', 'María López', 'Juan García', 'Ana Martínez', 'Carlos Ruiz'];
+                const captions = [
+                    'Explorando nuevos horizontes 🏔️ #Aventura',
+                    'Cocinando nuevas recetas 🍳 #Gastronomía',
+                    'Momentos especiales ✨ #Vida',
+                    'Capturando el momento 📸 #Fotografía',
+                    'Disfrutando del día ☀️ #Felicidad'
+                ];
+                
+                return {
+                    username: usernames[Math.floor(Math.random() * usernames.length)],
+                    fullname: fullnames[Math.floor(Math.random() * fullnames.length)],
+                    avatar: `https://picsum.photos/40?random=${index + Math.random()}`,
+                    image: `https://picsum.photos/800/600?random=${index + Math.random()}`,
+                    caption: captions[Math.floor(Math.random() * captions.length)],
+                    likes: Math.floor(Math.random() * 500) + 100,
+                    timestamp: Math.floor(Math.random() * 24) + ' horas'
+                };
+            }
+
+            // Función para cargar posts
+            function loadPosts() {
+                if (loading) return;
+                
+                loading = true;
+                $('.loading-spinner').addClass('active');
+
+                // Simulamos una carga con delay
+                setTimeout(() => {
+                    const template = document.getElementById('post-template');
+                    const startIndex = (page - 1) * postsPerPage;
+
+                    // Generar nuevos posts
+                    for (let i = 0; i < postsPerPage; i++) {
+                        const post = generateRandomPost(startIndex + i);
+                        const postElement = $(template.content.cloneNode(true));
+                        
+                        postElement.find('.username').text(post.username);
+                        postElement.find('.fullname').text(post.fullname);
+                        postElement.find('.user-avatar').attr('src', post.avatar);
+                        postElement.find('.card-img-top').attr('src', post.image);
+                        postElement.find('.card-text').text(post.caption);
+                        postElement.find('.like-count').text(`${post.likes} Likes`);
+                        postElement.find('.timestamp').text(post.timestamp);
+                        
+                        $('.timeline-posts').append(postElement);
+                    }
+
+                    page++;
+                    loading = false;
+                    $('.loading-spinner').removeClass('active');
+                }, 1000); // 1 segundo de delay para simular carga
+            }
+
+            // Cargar posts iniciales
+            loadPosts();
+
+            // Detectar scroll
+            $(window).scroll(function() {
+                if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                    loadPosts();
                 }
-                $likeCount.attr('data-count', count).text(count + " Likes");
+            });
+
+            // Enhanced like functionality
+            $('.btn-like').click(function(){
+                const $btn = $(this);
+                const $likeCount = $btn.siblings('.like-count');
+                const currentLikes = parseInt($likeCount.text());
+                
+                if($btn.hasClass('liked')) {
+                    $btn.removeClass('liked').find('.like-icon').text('❤️');
+                    $likeCount.text(`${currentLikes - 1} Likes`);
+                } else {
+                    $btn.addClass('liked').find('.like-icon').text('❤️');
+                    $likeCount.text(`${currentLikes + 1} Likes`);
+                }
+                
+                // Añadir animación
+                $btn.addClass('animate__animated animate__pulse');
+                setTimeout(() => $btn.removeClass('animate__animated animate__pulse'), 1000);
             });
         });
     </script>
