@@ -69,6 +69,7 @@
             align-items: center;
             padding: 1rem 1.5rem;
             border-bottom: 1px solid rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .user-avatar {
@@ -136,31 +137,123 @@
             width: 3rem;
             height: 3rem;
         }
+
+        .profile-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .profile-link:hover {
+            color: var(--hover-color);
+            transform: translateY(-1px);
+        }
+
+        .user-details {
+            cursor: pointer;
+        }
+
+        .profile-header-mini {
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .profile-header-mini:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        .profile-avatar-mini {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+
+        .profile-info-mini {
+            flex-grow: 1;
+        }
+
+        .profile-header-mini a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .view-profile-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            transition: all 0.3s;
+        }
+
+        .view-profile-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-logout {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: #dc3545;
+            border: 1px solid #dc3545;
+            background: transparent;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="gradient-bg">
-    <!-- Navigation buttons -->
-    <div class="container text-center my-3">
-        <div class="btn-group" role="group">
-            <a href="index.html" class="btn btn-primary mx-1">Inicio</a>
-            <a href="login.html" class="btn btn-primary mx-1">Iniciar Sesión</a>
-            <a href="register.html" class="btn btn-primary mx-1">Registro</a>
-            <a href="perfil.html" class="btn btn-primary mx-1">Perfil</a>
-            <a href="timeline.html" class="btn btn-primary mx-1">Timeline</a>
-        </div>
-    </div>
-
     <div class="container py-5">
+        <!-- Add profile mini header -->
+        <div class="profile-header-mini">
+            <a href="perfil.html" class="d-flex align-items-center flex-grow-1">
+                <img src="https://picsum.photos/50" alt="Tu perfil" class="profile-avatar-mini">
+                <div class="profile-info-mini">
+                    <h6 class="mb-0">@usuario_demo</h6>
+                    <small class="text-muted">Juan Pérez</small>
+                </div>
+            </a>
+            <div class="profile-actions">
+                <a href="perfil.html" class="view-profile-btn">Ver mi perfil</a>
+                <a href="index.html" class="btn-logout">Salir</a>
+            </div>
+        </div>
+
         <div class="timeline-posts">
             <!-- Template for dynamic post generation -->
             <template id="post-template">
                 <div class="card shadow-sm">
                     <div class="user-info d-flex align-items-center">
-                        <img src="" class="user-avatar" alt="Avatar">
-                        <div class="ms-3">
-                            <h6 class="username mb-0"></h6>
-                            <small class="text-muted fullname"></small>
-                        </div>
+                        <a href="perfil.html" class="profile-link">
+                            <img src="" class="user-avatar" alt="Avatar">
+                            <div class="ms-3 user-details">
+                                <h6 class="username mb-0"></h6>
+                                <small class="text-muted fullname"></small>
+                            </div>
+                        </a>
                         <small class="timestamp ms-auto"></small>
                     </div>
                     <img src="" class="card-img-top" alt="Post">
@@ -170,7 +263,7 @@
                     <div class="post-actions d-flex justify-content-between align-items-center">
                         <span class="like-count"></span>
                         <button class="btn-like">
-                            <span class="like-icon">❤️</span> Like
+                            <span class="like-icon">🤍</span> Like
                         </button>
                     </div>
                 </div>
@@ -260,23 +353,41 @@
                 }
             });
 
-            // Enhanced like functionality
-            $('.btn-like').click(function(){
+            // Reemplazar el manejador de eventos de like existente con este:
+            $(document).on('click', '.btn-like', function(){
                 const $btn = $(this);
                 const $likeCount = $btn.siblings('.like-count');
-                const currentLikes = parseInt($likeCount.text());
+                // Extraer solo el número de likes del texto (eliminar la palabra "Likes")
+                let count = parseInt($likeCount.text().split(' ')[0]);
                 
                 if($btn.hasClass('liked')) {
-                    $btn.removeClass('liked').find('.like-icon').text('❤️');
-                    $likeCount.text(`${currentLikes - 1} Likes`);
+                    count--;
+                    $btn.removeClass('liked').find('.like-icon').text('🤍');
                 } else {
+                    count++;
                     $btn.addClass('liked').find('.like-icon').text('❤️');
-                    $likeCount.text(`${currentLikes + 1} Likes`);
                 }
+                
+                $likeCount.text(`${count} Likes`);
                 
                 // Añadir animación
                 $btn.addClass('animate__animated animate__pulse');
                 setTimeout(() => $btn.removeClass('animate__animated animate__pulse'), 1000);
+            });
+
+            // Add click handler for profile links
+            $(document).on('click', '.profile-link', function(e) {
+                // You could add specific user ID handling here
+                // For demo purposes it just goes to profile page
+                window.location.href = 'perfil.html';
+            });
+
+            // Agregar manejador para el botón de logout
+            $('.btn-logout').click(function(e) {
+                e.preventDefault();
+                if(confirm('¿Está seguro que desea cerrar sesión?')) {
+                    window.location.href = 'index.html';
+                }
             });
         });
     </script>

@@ -106,20 +106,30 @@
             margin-top: 1.5rem !important;
             margin-bottom: 2rem !important;
         }
+
+        .btn-return {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            background: transparent;
+            transition: all 0.3s;
+            margin-right: 1rem;
+        }
+
+        .btn-return:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .profile-actions {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body class="gradient-bg">
-    <!-- Navigation buttons -->
-    <div class="container text-center my-3">
-        <div class="btn-group" role="group">
-            <a href="index.html" class="btn btn-primary mx-1">Inicio</a>
-            <a href="login.html" class="btn btn-primary mx-1">Iniciar Sesión</a>
-            <a href="register.html" class="btn btn-primary mx-1">Registro</a>
-            <a href="perfil.html" class="btn btn-primary mx-1">Perfil</a>
-            <a href="timeline.html" class="btn btn-primary mx-1">Timeline</a>
-        </div>
-    </div>
-
     <div class="container py-4">
         <!-- Profile Header -->
         <div class="profile-header">
@@ -131,7 +141,12 @@
                     <h2>@usuario_demo</h2>
                     <p class="text-muted">Juan Pérez</p>
                     <p>Amante de la fotografía y los viajes. Siempre buscando nuevas aventuras 🌎✈️📸</p>
-                    <button class="btn btn-outline-primary">Editar perfil</button>
+                    <div class="profile-actions">
+                        <a href="timeline.html" class="btn btn-return">
+                            <i class="fas fa-arrow-left"></i> Volver al Timeline
+                        </a>
+                        <button class="btn btn-return">Editar perfil</button>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="row text-center g-3">
