@@ -93,12 +93,14 @@
                             <div class="mb-3">
                                 <input type="text" class="form-control" id="apellidos" placeholder="Apellidos">
                             </div>
-                            <!-- Nuevo campo: género con opciones -->
+                            <!-- Modificar las opciones del género -->
                             <div class="mb-3">
                                 <select class="form-select" id="gender" required>
-                                    <option value="">[Seleccione su Genero]</option>
+                                    <option value="">[Seleccione]</option>
                                     <option value="Hombre">Hombre</option>
                                     <option value="Mujer">Mujer</option>
+                                    <option value="NoAplica">No Aplica</option>
+                                    <option value="PrefieroNoDecirlo">Prefiero no Decirlo</option>
                                     <option value="Otro">Otro</option>
                                 </select>
                             </div>
@@ -132,26 +134,28 @@
         const email = $('#email').val().trim();
         const nombre = $('#nombre').val().trim();
         const gender = $('#gender').val();
+        const otherGender = $('#otherGender').val().trim();
         const birthdate = $('#birthdate').val();
 
         // Validaciones de campos obligatorios
-        if (!username) errors.push("Username");
-        if (!password) errors.push("Password");
-        if (!confirmPassword) errors.push("Confirmar Password");
-        if (!email) errors.push("Correo electrónico");
-        if (!nombre) errors.push("Nombre");
-        if (!gender) errors.push("Género");
-        if (!birthdate) errors.push("Fecha de nacimiento");
+        if (!username) errors.push("Username es obligatorio");
+        if (!password) errors.push("Password es obligatorio");
+        if (!confirmPassword) errors.push("Confirmar Password es obligatorio");
+        if (!email) errors.push("Correo electrónico es obligatorio");
+        if (!nombre) errors.push("Nombre es obligatorio");
+        if (!gender) errors.push("Género es obligatorio");
+        if (gender === 'Otro' && !otherGender) errors.push("Debe especificar el género");
+        if (!birthdate) errors.push("Fecha de nacimiento es obligatoria");
 
-        // Validación de email
+        // Validación de email mejorada
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(email && !emailRegex.test(email)) {
-            errors.push("Correo electrónico (válido)");
+            errors.push("El formato del correo electrónico no es válido");
         }
 
         // Validar que las contraseñas coincidan
         if(password && confirmPassword && password !== confirmPassword) {
-            errors.push("Las contraseñas deben coincidir");
+            errors.push("Las contraseñas no coinciden");
         }
 
         // Validar edad mínima de 18 años
@@ -164,24 +168,27 @@
                 age--;
             }
             if(age < 18) {
-                errors.push("Edad mínima debe ser 18 años");
+                errors.push("Debe ser mayor de 18 años para registrarse");
             }
         }
 
         if(errors.length > 0) {
-            alert("Faltan o son incorrectos los siguientes datos:\n- " + errors.join("\n- "));
-        } else {
-            alert("Registro completado exitosamente.");
-            // ...proceder con el envío del formulario...
+            alert("Por favor corrija los siguientes errores:\n- " + errors.join("\n- "));
+            return false;
         }
+
+        alert("Registro completado exitosamente.");
+        // Aquí iría el código para enviar el formulario
     });
 
     // Mostrar/Ocultar campo "Otro" para género
     $('#gender').change(function() {
         if($(this).val() === 'Otro') {
             $('#otherGenderContainer').removeClass('d-none');
+            $('#otherGender').prop('required', true);
         } else {
             $('#otherGenderContainer').addClass('d-none');
+            $('#otherGender').prop('required', false);
         }
     });
 </script>
